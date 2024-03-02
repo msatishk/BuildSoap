@@ -27,7 +27,7 @@ jobs:
         run: nuget restore SOAP_APIs.sln
     
       - name: Build Solution
-        run: msbuild solution.sln /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:platform="Any CPU" /p:configuration="Release" /p:PublishUrl="../_build"
+        run: msbuild SOAP_APIs.sln /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:platform="Any CPU" /p:configuration="Release" /p:PublishUrl="../_build"
       - name: Upload Artifact
         uses: actions/upload-artifact@v1.0.0
         with:
