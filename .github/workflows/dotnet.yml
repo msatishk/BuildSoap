@@ -27,12 +27,13 @@ jobs:
         run: |
           dir
       - name: Restore Packages
-        run: nuget restore ./SOAP_APIs/SOAP_APIs.csproj
+        run: nuget restore ./SOAP_APIs/SOAP_APIs.csproj -PackagesDirectory ..\..\packages
+
       
 
       - name: Build Solution
         run: |
-          msbuild.exe SOAP_APIs.sln /p:platform="Any CPU" /p:configuration="Release"
+          msbuild.exe SOAP_APIs.sln /t:restore /p:platform="Any CPU" /p:configuration="Release"
      # - name: Restore nuget packages
      #   run: nuget restore SOAP_APIs/SOAP_APIs.csproj
 
