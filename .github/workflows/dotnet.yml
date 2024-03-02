@@ -26,8 +26,5 @@ jobs:
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v1.1
 
-      - name: Restore Packages
-        run: nuget restore SOAP_APIs.sln
-
       - name: Build solution
         run: msbuild SOAP_APIs.sln -t:rebuild -property:Configuration=Release
