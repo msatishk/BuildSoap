@@ -15,21 +15,19 @@ jobs:
     runs-on: [windows-latest]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-      - name: setup-msbuild
+      - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
   
-      - name: Setup Nuget.exe for use with actions
-        uses: Nuget/Setup-nuget@v1.0.2
-        
-      - name: Restore Nuget Packages
+      - name: setup-msbuild
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Restore Packages
         run: nuget restore SOAP_APIs.sln
-    
-      - name: Build Solution
-        run: msbuild SOAP_APIs.sln /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:platform="Any CPU" /p:configuration="Release" /p:PublishUrl="../_build"
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1.0.0
-        with:
-          name: Bundle
-          path: "./_build"
+
+      - name: Build solution
+        run: msbuild SOAP_APIs.sln -t:rebuild -property:Configuration=Release
