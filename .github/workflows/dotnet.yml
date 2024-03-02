@@ -12,23 +12,16 @@ on:
 jobs:
   build:
 
-    runs-on: [windows-latest]
+    runs-on: windows-2019
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 5.0.x
 
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1
 
      # - name: Setup NuGet
      #   uses: NuGet/setup-nuget@v1.0.5
-      - name: Navigate to Workspace
-        run: cd $GITHUB_WORKSPACE
         
       - name: Restore Packages
         run: nuget restore SOAP_APIs.sln
