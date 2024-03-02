@@ -27,7 +27,9 @@ jobs:
 
      # - name: Setup NuGet
      #   uses: NuGet/setup-nuget@v1.0.5
-  
+      - name: Navigate to Workspace
+        run: cd $GITHUB_WORKSPACE
+        
       - name: Restore Packages
         run: nuget restore SOAP_APIs.sln
 
