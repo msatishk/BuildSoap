@@ -17,15 +17,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.0.2
 
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.5
   
-      - name: setup-msbuild
-        uses: microsoft/setup-msbuild@v1.0.2
-        
+       
       - name: Restore nuget packages
         run: nuget restore SOAP_APIs/SOAP_APIs.csproj
 
