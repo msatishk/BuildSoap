@@ -28,7 +28,10 @@ jobs:
           dir
       - name: Restore Packages
         run: nuget restore ./SOAP_APIs/SOAP_APIs.csproj -PackagesDirectory ..\..\packages
-
+      -  run: echo "folder ${{github.workspace}}"
+      - name: List files in the repository
+        run: |
+          dir
       
 
       - name: Build Solution
