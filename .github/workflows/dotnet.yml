@@ -33,7 +33,7 @@ jobs:
 
       - name: Build Solution
         run: |
-          msbuild.exe SOAP_APIs.sln /p:configuration=Release
+          msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:Configuration=Release /p:Platform=AnyCPU
      # - name: Restore nuget packages
      #   run: nuget restore SOAP_APIs/SOAP_APIs.csproj
 
