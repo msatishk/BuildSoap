@@ -25,6 +25,8 @@ jobs:
   
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v1.1
-
+      - name: Restore Nuget Packages
+        run: nuget .\SOAP_APIs\SOAP_APIs.scproj
+#nuget.exe restore .\pathto\packages.config -packagesdirectory .\pathto\outputdir
       - name: Build solution
         run: msbuild SOAP_APIs.sln -t:rebuild -property:Configuration=Release
