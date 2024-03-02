@@ -22,9 +22,11 @@ jobs:
 
      # - name: Setup NuGet
      #   uses: NuGet/setup-nuget@v1.0.5
-        
+      -  run: echo "folder {{github.workspace}"
+       
       - name: Restore Packages
-        run: nuget restore SOAP_APIs.sln
+        run: nuget restore ./SOAP_APIs/SOAP_APIs.csproj
+      
 
       - name: Build Solution
         run: |
