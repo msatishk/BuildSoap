@@ -38,7 +38,7 @@ jobs:
       - name: Build Solution
         run: |
           #msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:Configuration=Release /p:Platform=AnyCPU
-          msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:Configuration=Release /p:Platform=AnyCPU /p:PublishDir="D:\a\BuildSoap\BuildSoap\release\"
+          msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:Configuration=Release /p:Platform=AnyCPU /p:PublishDir="D:\a\BuildSoap\BuildSoap\SOAP_APIs\release\"
       - name: List files in the repository
         #working-directory: SOAP_APIs
         run: |
@@ -49,6 +49,6 @@ jobs:
         with:
           name: Bundle
           #path: "./SOAP_APIs/obj/release"
-          path: "./release"
+          path: "./SOAP_APIs/release"
 
 
