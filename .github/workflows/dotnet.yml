@@ -38,7 +38,7 @@ jobs:
       - name: Build Solution
         run: |
           #msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:Configuration=Release /p:Platform=AnyCPU
-          msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:DeployOnBuild=true /p:PublishProfile=./SOAP_APIs/Properties/profile.pubxml
+          msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:DeployOnBuild=true /p:PublishProfile=./SOAP_APIs/Properties/PublishProfiles/profile.pubxml
       - name: List files in the repository
         working-directory: SOAP_APIs/bin
         run: |
