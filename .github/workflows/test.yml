@@ -40,13 +40,15 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: 'Resolve Project Dependencies Using Dotnet'
-      shell: pwsh # For Linux, use bash
-      run: |
+      run: dotnet build SOAP_APIs/SOAP_APIs.csproj --configuration Release
+      #working-directory: SOAP_APIs
+      #shell: pwsh # For Linux, use bash
+      #run: |
         #pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
-        pushd 'SOAP_APIs/SOAP_APIs.csproj'
+        #pushd './SOAP_APIs/SOAP_APIs.csproj'
 
-        dotnet build --configuration Release
-        popd
+        #dotnet build --configuration Release
+        #popd
 
    # - name: 'Login via Azure CLI'
       # run: az login --service-principal --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
