@@ -42,5 +42,5 @@ jobs:
         uses: actions/upload-artifact@v1.0.0
         with:
           name: Bundle
-          path: "./_build"
+          path: "./SOAP_APIs/_build"
 
