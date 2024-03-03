@@ -31,7 +31,7 @@ jobs:
       -  run: echo "folder ${{github.workspace}}"
       - name: List files in the repository
         run: |
-          dir
+          dir /s
       
 
       - name: Build Solution
