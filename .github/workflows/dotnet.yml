@@ -38,9 +38,9 @@ jobs:
       - name: Build Solution
         run: |
           #msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:Configuration=Release /p:Platform=AnyCPU
-          msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:Platform=AnyCPU /p:PublishProvider=FileSystem /p:WebPublishMethod=FileSystem /p:PublishUrl=bin\app.publish\ /p:configuration=Release
+          msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:Platform=AnyCPU /p:PublishProvider=FileSystem /p:WebPublishMethod=FileSystem /p:PublishUrl=SOAP_APIs\bin\app.publishbin\app.publish\ /p:configuration=Release
       - name: List files in the repository
-        #working-directory: SOAP_APIs
+        working-directory: SOAP_APIs/bin
         run: |
           dir
       - name: Upload Artifact
@@ -49,6 +49,6 @@ jobs:
         with:
           name: Bundle
           #path: "./SOAP_APIs/obj/release"
-          path: "./SOAP_APIs./bin/app.publish"
+          path: "./SOAP_APIs/bin/app.publish"
 
 
