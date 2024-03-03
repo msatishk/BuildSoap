@@ -37,7 +37,7 @@ jobs:
 
       - name: Build Solution
         run: |
-          msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:Configuration=Release /p:Platform=AnyCPU /p:PublishDir=..\build
+          msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:Configuration=Release /p:Platform=AnyCPU /p:PublishDir=\SOAP_APIs\build
       - name: List files in the repository
         run: |
           dir
@@ -45,5 +45,5 @@ jobs:
         uses: actions/upload-artifact@v1.0.0
         with:
           name: Bundle
-          path: "./_build"
+          path: "./SOAP_APIs/_build"
 
