@@ -37,7 +37,7 @@ jobs:
 
       - name: Build Solution
         run: |
-          msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:Configuration=Release /p:Platform=AnyCPU /p:PublishDir=_build
+          msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:Configuration=Release /p:Platform=AnyCPU /p:PublishDir=\SOAP_APIs\_build
       - name: List files in the repository
         working-directory: SOAP_APIs
         run: |
