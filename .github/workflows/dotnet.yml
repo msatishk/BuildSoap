@@ -27,7 +27,7 @@ jobs:
         run: |
           dir
       - name: Restore Packages
-        run: nuget restore ./SOAP_APIs/SOAP_APIs.csproj -PackagesDirectory ..\packages
+        run: nuget restore ./SOAP_APIs/SOAP_APIs.csproj -PackagesDirectory .\packages
       -  run: echo "folder ${{github.workspace}}"
       - name: List files in the repository
         working-directory: SOAP_APIs
@@ -36,7 +36,7 @@ jobs:
       
 
       - name: Build Solution
-        working-directory: github.workspace/SOAP_APIs
+        working-directory: ${{github.workspace}}/SOAP_APIs
         run: |
           msbuild.exe ./SOAP_APIs.sln /p:Configuration=Release /p:Platform="AnyCPU"
      # - name: Restore nuget packages
