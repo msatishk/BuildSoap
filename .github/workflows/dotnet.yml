@@ -42,7 +42,8 @@ jobs:
           #msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:Configuration=Release /p:Platform=AnyCPU
           #msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:DeployOnBuild=true /p:PublishProfile=Properties/PublishProfiles/profile.pubxml
           #msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:DeployOnBuild=true /p:PublishProfile=profile.pubxml
-          msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:platform=AnyCPU /p:configuration=Release /p:PublishUrl=./SOAP_APIs/bin/app.publish/
+          # -Notworking-msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:platform=AnyCPU /p:configuration=Release /p:PublishUrl=./SOAP_APIs/bin/app.publish/
+          msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:DeployOnBuild=true /p:DeployDefaultTarget=Folder /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:platform=AnyCPU /p:configuration=Release /p:PublishUrl=bin/app.publish/
 
 
       - name: List files in the repository
