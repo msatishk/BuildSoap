@@ -1,60 +1,46 @@
 name: Build & Deploy Function App V1
 
 on:
-  push:
-    branches: ["main"]
-    # paths:
-    #   - 'src/backend-apis/**'
-    #   - 'tests/UnitTests/**'
   workflow_dispatch:
 
 env:
-  AZURE_FUNCTIONAPP_NAME: 'func-onx1-ivu-rtsi-dev-001'   # set this to your function app name on Azure
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'SOAP_APIs'       
+  AZURE_SOAPAPI_NAME: 'as-onx1-intgapp-dev-001'   # set this to your function app name on Azure
+  AZURE_SOAPAPI_PACKAGE_PATH: 'SOAP_APIs'       
   DOTNET_VERSION: '6.0.x'    # set this to the dotnet version to use (e.g.'6.0.x', 8.0.x)
 
 jobs:
   build-and-deploy:
-    runs-on: windows-latest
-    #environment: dev
-    #permissions:
-    #  contents: write
-    #  id-token: write
+    runs-on: self-hosted-win 
+    environment: dev
+    permissions:
+      contents: write
+      id-token: write
       
     steps:
-    #- name: Cache actions
-   #   uses: actions/cache@v2
-   #   with:
-   #     path: |
-    #      ~/.npm
-    #      ~/.nuget
+    - name: Cache actions
+      uses: actions/cache@v2
+      with:
+       path: |
+          ~/.npm
+          ~/.nuget
           # Add other paths for the specified actions
-    #    key: ${{ runner.os }}-actions-${{ hashFiles('**/*.yml') }}
+       key: ${{ runner.os }}-actions-${{ hashFiles('**/*.yml') }}
 
     - name: 'Checkout GitHub Action'
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v2
 
-    - name: Setup DotNet ${{ env.DOTNET_VERSION }} Environment
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: ${{ env.DOTNET_VERSION }}
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1
 
-    - name: 'Resolve Project Dependencies Using Dotnet'
-      run: dotnet build SOAP_APIs/SOAP_APIs.csproj --configuration Release
-      #working-directory: SOAP_APIs
-      #shell: pwsh # For Linux, use bash
-      #run: |
-        #pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
-        #pushd './SOAP_APIs/SOAP_APIs.csproj'
-
-        #dotnet build --configuration Release
-        #popd
-
-   # - name: 'Login via Azure CLI'
-      # run: az login --service-principal --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
-      #uses: azure/login@v1
-      #with:
-       # creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Restore Packages
+      run: nuget restore ./SOAP_APIs/SOAP_APIs.csproj -PackagesDirectory .\packages
+    -  run: echo "folder ${{github.workspace}}"
+    - name: Build Solution
+      run: |
+       msbuild SOAP_APIs.sln /p:Configuration=Release /p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:publishUrl=D:\a\BuildSoap\BuildSoap\SOAP_APIs\bin\app.publish
+   
+    - name: 'Login via Azure CLI'
+      run: az login --service-principal --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
   
     #- name: 'Run Azure Functions Action'
     #  uses: Azure/functions-action@v1
