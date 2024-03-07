@@ -17,6 +17,7 @@ jobs:
       id-token: write
       
     steps:
+    -  run: echo "folder ${{github.workspace}}"
 
     - run: echo "::set-output name=appsettings_json::$(tr -d '\n' < ${{ env.MY_FILE_PATH }})"
       id: load-json
