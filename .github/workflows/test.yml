@@ -1,4 +1,4 @@
-name: Build & Deploy Function App V1
+name: Appconfig
 
 on:
   workflow_dispatch:
