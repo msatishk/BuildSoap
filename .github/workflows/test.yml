@@ -31,7 +31,12 @@ jobs:
                 #testing output from the previous command
    -  name: echo ServerName
       shell: bash
-      run: #echo "${{steps.getParams.outputs.packageJson}}"
-           echo "${{fromJson(steps.getParams.outputs.packageJson).IVUVehicleConsistTopicName.value}}.suffix"
+      run: echo "${{steps.getParams.outputs.packageJson}}"
 
-         
+   - name: loop
+     run: |
+       for tag in ${{ join(fromJSON(steps.meta.outputs.json), ' ') }}
+       do
+         echo "$tag"
+       done
+     shell: bash   
