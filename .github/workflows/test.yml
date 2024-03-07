@@ -31,7 +31,7 @@ jobs:
                 #testing output from the previous command
    -  name: echo ServerName
       shell: bash
-      run: echo "${{steps.getParams.outputs.packageJson}}"
+      run: #echo "${{steps.getParams.outputs.packageJson}}"
            echo "${{fromJson(steps.getParams.outputs.packageJson).IVUVehicleConsistTopicName.value}}.suffix"
 
          
