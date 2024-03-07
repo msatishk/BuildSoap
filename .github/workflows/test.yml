@@ -18,6 +18,8 @@ jobs:
       
     steps:
     -  run: echo "folder ${{github.workspace}}"
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@v2
     - name: List files in the repository
       run: |
           dir
