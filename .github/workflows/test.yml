@@ -10,14 +10,14 @@ env:
 
 jobs:
   build-and-deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     environment: dev
     permissions:
       contents: write
       id-token: write
       
     steps:
-    
+
     - run: echo "::set-output name=appsettings_json::$(tr -d '\n' < ${{ env.MY_FILE_PATH }})"
       id: load-json
         
