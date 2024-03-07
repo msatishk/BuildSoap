@@ -9,55 +9,27 @@ env:
   MY_FILE_PATH: "${{ github.workspace }}/SOAP_APIs/appsettings.json"    # set this to the dotnet version to use (e.g.'6.0.x', 8.0.x)
 
 jobs:
-  my_first_job:
-    name: My first job
-      build-and-deploy:
-        runs-on: ubuntu-latest
-        environment: dev
-        permissions:
-          contents: write
-          id-token: write
-          
-        steps:
-        -  run: echo "folder ${{github.workspace}}"
-        - name: 'Checkout GitHub Action'
-          uses: actions/checkout@v2
-        - name: List files in the repository
-          run: |
-              pwd
-              
-        - run: echo "::set-output name=appsettings_json::$(tr -d '\n' < ${{ env.MY_FILE_PATH }})"
-          id: load-json
-        - run: echo '${{ steps.load-json.outputs.appsettings_json }}'
-        #- name: Config
-        #  uses: azure/appservice-settings@v1
-        #  with:
-        #    app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-        #    app-settings-json: '${{ steps.load-json.outputs.appsettings_json }}' 
-        #    id: settings
-        
-      my_second_job:
-       name: My second job
-         build-and-deploy:
-           runs-on: windows-latest
-           environment: dev
+ build-and-deploy:
+   runs-on: windows-latest
+   environment: dev
                
-           steps:
-             -  run: echo "folder ${{github.workspace}}"
-             - name: 'Checkout GitHub Action'
-               uses: actions/checkout@v2
-             - id: getParams
-               shell: bash
-               run: |
-                  content=`cat ./SOAP_APIs/appsettings.json`
+   steps:
+   -  run: echo "folder ${{github.workspace}}"
+   -  name: 'Checkout GitHub Action'
+      uses: actions/checkout@v2
+   -  id: getParams
+      shell: bash
+      run: |
+        content=`cat ./SOAP_APIs/appsettings.json`
                   # the following lines are only required for multi line json
-                  content="${content//'%'/'%25'}"
-                  content="${content//$'\n'/'%0A'}"
-                  content="${content//$'\r'/'%0D'}"
-                  # end of optional handling for multi line json
-                  echo "::set-output name=packageJson::$content"
+        content="${content//'%'/'%25'}"
+        content="${content//$'\n'/'%0A'}"
+        content="${content//$'\r'/'%0D'}"
+            # end of optional handling for multi line json
+        echo "::set-output name=packageJson::$content"
                 
                 #testing output from the previous command
-                - name: echo ServerName
-                  shell: bash
-                  run: echo "${{fromJson(steps.getParams.outputs.packageJson).parameters.ServerName.value}}.suffix"
+   -  name: echo ServerName
+      shell: bash
+      run: echo "${{fromJson(steps.getParams.outputs.packageJson)}}"
+         
