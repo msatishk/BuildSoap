@@ -32,4 +32,6 @@ jobs:
    -  name: echo ServerName
       shell: bash
       run: echo "${{steps.getParams.outputs.packageJson}}"
+           echo "${{fromJson(steps.getParams.outputs.packageJson).IVUVehicleConsistTopicName.value}}.suffix"
+
          
