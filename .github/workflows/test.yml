@@ -31,5 +31,5 @@ jobs:
                 #testing output from the previous command
    -  name: echo ServerName
       shell: bash
-      run: echo "${{fromJson(steps.getParams.outputs.packageJson)}}"
+      run: echo "${{steps.getParams.outputs.packageJson}}"
          
