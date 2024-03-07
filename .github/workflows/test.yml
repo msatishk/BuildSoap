@@ -26,7 +26,7 @@ jobs:
           
     - run: echo "::set-output name=appsettings_json::$(tr -d '\n' < ${{ env.MY_FILE_PATH }})"
       id: load-json
-        
+    - run: echo '${{ steps.load-json.outputs.appsettings_json }}'
     #- name: Config
     #  uses: azure/appservice-settings@v1
     #  with:
