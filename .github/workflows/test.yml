@@ -18,7 +18,10 @@ jobs:
       
     steps:
     -  run: echo "folder ${{github.workspace}}"
-
+    - name: List files in the repository
+      run: |
+          dir
+          
     - run: echo "::set-output name=appsettings_json::$(tr -d '\n' < ${{ env.MY_FILE_PATH }})"
       id: load-json
         
