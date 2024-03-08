@@ -34,5 +34,9 @@ jobs:
       run: echo "${{steps.getParams.outputs.packageJson}}"
 
    - name: loop
+   - name: Script
+     run: |
        $json = Get-Content 'C:\Users\Documents\test.json' | Out-String | ConvertFrom-Json 
        echo "${{json}}"
+       Write-Host "Line 3"
+     shell: pwsh
