@@ -38,7 +38,8 @@ jobs:
      shell: pwsh
      run: |
        $file_text = Get-Content "./SOAP_APIs/appsettings.json"
+       echo $file_text
        #echo "::set-output name=new_value::$file_text"
-
+      
    # test to see if done correctly - should echo "value"
-   #- run: echo ${​​​​​​​​​{​​​​​​​​​ steps.output_test.outputs.new_value }​​​​​​​​​}​​​​​​​​​
+   - run: echo ${​​​​​​​​​{​​​​​​​​​ steps.output_test.outputs.new_value }​​​​​​​​​}​​​​​​​​​
