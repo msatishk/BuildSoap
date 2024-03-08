@@ -34,9 +34,5 @@ jobs:
       run: echo "${{steps.getParams.outputs.packageJson}}"
 
    - name: loop
-     run: |
-       for tag in ${{ join(fromJSON(steps.meta.outputs.json), ' ') }}
-       do
-         echo "$tag"
-       done
-     shell: bash   
+       $json = Get-Content 'C:\Users\Documents\test.json' | Out-String | ConvertFrom-Json 
+       echo "${{json}}"
