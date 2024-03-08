@@ -35,5 +35,6 @@ jobs:
 
    - name: Script
      run: |
-       Write-Host "Line 3"
+       $json = Get-Content 'C:\Users\Documents\test.json' | Out-String | ConvertFrom-Json 
+       echo "${{json}}"     
      shell: pwsh
