@@ -43,4 +43,8 @@ jobs:
        #Write-Host "::set-output name=new_value::$file_text"
       
    # test to see if done correctly - should echo "value"
+   -  name: echo ServerName
+      shell: pwsh
+      run: echo "${{steps.output_test.outputs.new_value}}"
+
    #- run: Write-Host ${​​​​​​​​​{​​​​​​​​​ steps.output_test.outputs.new_value }​​​​​​​​​}​​​​​​​​​
