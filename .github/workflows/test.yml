@@ -34,7 +34,7 @@ jobs:
       run: echo "${{steps.getParams.outputs.packageJson}}"
 
    - name: Read and assign
-     id: output_test
+     #id: output_test
      shell: pwsh
      run: |
        #$file_text = Get-Content "./SOAP_APIs/appsettings.json"
