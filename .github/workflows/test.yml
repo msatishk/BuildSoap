@@ -45,6 +45,6 @@ jobs:
    # test to see if done correctly - should echo "value"
    -  name: echo ServerName poweshell
       shell: pwsh
-      run: echo "${{steps.output_test.outputs.new_value}}"
+      run: echo @"${{steps.output_test.outputs.new_value}}"
 
    #- run: Write-Host ${​​​​​​​​​{​​​​​​​​​ steps.output_test.outputs.new_value }​​​​​​​​​}​​​​​​​​​
