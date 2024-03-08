@@ -34,7 +34,6 @@ jobs:
       run: echo "${{steps.getParams.outputs.packageJson}}"
 
    - name: Script
-     run: |
-       $json = Get-Content 'C:\Users\Documents\test.json' | Out-String | ConvertFrom-Json 
+     run: $json = Get-Content './SOAP_APIs/appsettings.json' | Out-String | ConvertFrom-Json     
        echo "${{json}}"     
      shell: pwsh
