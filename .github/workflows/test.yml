@@ -33,7 +33,6 @@ jobs:
       shell: bash
       run: echo "${{steps.getParams.outputs.packageJson}}"
 
-   - name: loop
    - name: Script
      run: |
        Write-Host "Line 3"
