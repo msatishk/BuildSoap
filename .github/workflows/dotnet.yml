@@ -43,8 +43,8 @@ jobs:
           #msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:Configuration=Release /p:Platform=AnyCPU
           #msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:DeployOnBuild=true /p:PublishProfile=Properties/PublishProfiles/profile.pubxml
           #msbuild.exe ./SOAP_APIs/SOAP_APIs.csproj /p:DeployOnBuild=true /p:PublishProfile=profile.pubxml
-          #msbuild ./SOAP_APIs/SOAP_APIs.csproj /p:Configuration=Release /p:Platform=AnyCPU /t:WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:publishUrl=D:\a\BuildSoap\BuildSoap\SOAP_APIs\bin\app.publish\
-          msbuild ./SOAP_APIs/SOAP_APIs.csproj /p:Configuration=Release /p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:PublishDir=${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          msbuild ./SOAP_APIs/SOAP_APIs.csproj /p:Configuration=Release /p:Platform=AnyCPU /t:WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:publishUrl=D:\a\BuildSoap\BuildSoap\SOAP_APIs\bin\app.publish\
+          #msbuild ./SOAP_APIs/SOAP_APIs.csproj /p:Configuration=Release /p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:publishUrl=${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
       - name: List files in the repository
        # working-directory: SOAP_APIs
         run: |
@@ -55,8 +55,8 @@ jobs:
         with:
           name: Bundle
           #path: "./SOAP_APIs/obj/release"
-          #path: "./SOAP_APIs/bin/app.publish"
-          path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          path: "./SOAP_APIs/bin/app.publish"
+          #path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
 
 
