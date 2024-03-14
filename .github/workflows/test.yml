@@ -14,6 +14,18 @@ jobs:
    environment: dev
                
    steps:
+    - name: SHow env var
+      run: |
+        echo $ENVIRONMENT_STAGE    
+        # ^ 
+        # Reference by environment variable for added security
+        env:
+          ENVIRONMENT_STAGE = ${{ vars.ENVIRONMENT_STAGE }}
+          # ^                        # ^
+          # Pass the Github          # Reference the GitHub Environment's
+          # environment variable     # variable using the vars 
+          # to the step's            # context
+          # environment
    -  run: echo "folder ${{github.workspace}}"
    -  name: 'Checkout GitHub Action'
       uses: actions/checkout@v2
@@ -27,8 +39,9 @@ jobs:
         content="${content//$'\r'/'%0D'}"
             # end of optional handling for multi line json
         echo "::set-output name=packageJson::$content"
-                
-                #testing output from the previous command
+        echo "${{github.env}}"
+      
+      #testing output from the previous command
    -  name: echo ServerName
       shell: bash
       run: echo "${{steps.getParams.outputs.packageJson}}"
