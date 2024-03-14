@@ -14,18 +14,19 @@ jobs:
    environment: dev
                
    steps:
-    - name: SHow env var
-      run: |
-        echo $ENVIRONMENT_STAGE    
+   - name: SHow env var
+     run: |
+      echo $ENVIRONMENT_DEV   
         # ^ 
         # Reference by environment variable for added security
         env:
-          ENVIRONMENT_STAGE = ${{ vars.ENVIRONMENT_STAGE }}
+          ENVIRONMENT_DEV = ${{ vars.ENVIRONMENT_DEV }}
           # ^                        # ^
           # Pass the Github          # Reference the GitHub Environment's
           # environment variable     # variable using the vars 
           # to the step's            # context
           # environment
+   
    -  run: echo "folder ${{github.workspace}}"
    -  name: 'Checkout GitHub Action'
       uses: actions/checkout@v2
