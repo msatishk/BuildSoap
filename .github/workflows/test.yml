@@ -14,8 +14,6 @@ jobs:
       echo $ENVIRONMENT_DEV   
         # ^ 
         # Reference by environment variable for added security
-        env:
-          ENVIRONMENT_DEV = ${{ vars.ENVIRONMENT_DEV }}
           # ^                        # ^
           # Pass the Github          # Reference the GitHub Environment's
           # environment variable     # variable using the vars 
