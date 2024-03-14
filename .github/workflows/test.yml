@@ -11,7 +11,10 @@ jobs:
    steps:
    - name: SHow env var
      run: |
-      echo $ENVIRONMENT_DEV   
+      echo $ENVIRONMENT_DEV  
+      echo ${{vars.ENVIRONMENT_STAGE }}
+      #env:
+          #ENVIRONMENT_STAGE = ${{ vars.ENVIRONMENT_DEV }}
         # ^ 
         # Reference by environment variable for added security
           # ^                        # ^
